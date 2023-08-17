@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="user_base::Layout(~{::section})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <section class="content mt-5">
+
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1 style="font-weight: bold">Your Contacts</h1>
+                    
+                    <!-- Search Container -->
+                    <div class="search-container my-3">
+                        <input onkeyup="search()" id="search" type="text" placeholder="Search your Contacts" class="form-control">
+                        <div class="search-result">
+                            
+                        </div>
+                    </div>
+                    
+                    <table class="table table-striped table-dark">
+                        <thead>
+                            <tr style="background-color: blue">
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="c: ${list}">
+                                <th scope="row" th:text="${'CON0' + c.cid}"></th>
+                                
+                                <td >
+                                    <img src="" th:src="@{'/images/'+${c.profile}}" class='profile'>
+                                    <span th:text="${c.name}">
+                                            </span>
+                                </td>
+                                <td th:text="${c.email}"></td>
+                                <td th:text="${c.phone}"></td>
+                                <td>
+                                    <a th:href="@{'/user/delete/'+${c.cid}}"> <i class="fa fa-trash" style="color: red;padding-right: 3px"></i></a>
+                                    <a th:href="@{'/user/update/'+${c.cid}}">  <i class="fa fa-cogs" style="color: blue;padding-right: 3px"></i> </a>
+                                    <a th:href="@{'/user/view/'+${c.cid}}"> <i class="fa fa-eye" style="padding-right: 3px"></i> </a>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <!-- ======================= Pagination part ============================= -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li th:if="${currentpage != 0}"class="page-item ">
+                                <a class="page-link" href="#" tabindex="-1" th:href="@{'/user/show/'+${currentpage-1}}">Previous</a>
+                            </li>
+                            
+                            
+                            <li th:classappend="${currentpage==i-1?'active':''}"   th:each="i:${#numbers.sequence(1,totalpage)}"   class="page-item"><a th:href="@{'/user/show/'+${i-1}}"  class="page-link" href="#"><span th:text="${i}"></span></a></li>
+                            
+                            <li th:if="${currentpage+1 != totalpage}"  class="page-item">
+                                <a class="page-link" href="#" th:href="@{'/user/show/'+${currentpage+1}}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+        <script>
+            $(document).ready( ()=>{
+                $(".menu-item").removeClass("is-active");
+                $("#view-item").addClass("is-active");
+            });
+        </script>
+    </section>
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="user_base::Layout(~{::section})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <section class="content mt-5">
+            <div class='card mr-3 ml-3' th:if="${mycontact}">
+                <div class='card-body'>
+                    <div class='container text-center' >
+
+                        <img src="" th:src="@{'/images/'+${mycontact.profile}}" style='height: 200px; width:200px;border-radius: 50%; '>
+                        <h1 class=""> <span th:text='${mycontact.name + " (" }'> </span> <span th:text='${mycontact.nickname + " )"}'></span> </h1>
+
+                        <div id="pdetail">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Contact ID :</th>
+                                        <td th:text="${'CON0' +mycontact.cid}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Email :</th>
+                                        <td th:text="${mycontact.email}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Work :</th>
+                                        <td th:text="${mycontact.work}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Contact No.:</th>
+                                        <td th:text="${mycontact.phone}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">About Me :</th>
+                                        <td th:text="${mycontact.description}">  </td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        </div>
+                        
+                        <div class="container text-center">
+                                    <a th:href="@{'/user/update/'+${mycontact.cid}}" class="btn btn-outline-primary btn-lg">Edit Details</a>
+                                    <a th:href="@{'/user/show/0'}" class="btn btn-outline-danger btn-lg">Back</a>
+                                </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mr-3 md-3" th:unless="${mycontact}">
+                <div class='card-body'>
+                    <div class='container text-center'>
+                        <img src="" th:src="@{'/images/res.jpg'}" style='height: 380px; width:380px; '>
+                        <h1 class="mt-2" style="font-weight: bold">You Can't Access another User's Contacts...</h1>
+                        <p style=" font-weight: bold">It is essential to recognize and uphold the principle that you cannot access another user's contacts without their explicit permission.
+                        Respecting digital privacy rights fosters trust, protects personal information, and promotes a safe online environment for all users</p>
+                        
+                        <div class="alert alert-danger" role="alert">
+  <h5 style="color:red; font-weight: bold" class="mt-1">"Respect Privacy: Contacts Stay Secure, Yours and Theirs!"</h5>
+</div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </body>
+</html>

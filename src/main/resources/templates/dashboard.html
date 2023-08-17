@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="user_base::Layout(~{::section})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <section class="content mt-5">
+
+            <div th:if="${session.message}" class="alert" th:classappend="${session.message.type}" role="alert">
+                <span th:text="${session.message.content}"> </span><a th:href="@{/removeMessage3}"><i class="fa fa-times" aria-hidden="true" style="color: black"></i></a>
+            </div>
+
+
+            <div class="card">
+                <div class="card-body mt-3">
+
+                    <div class='container text-center' >
+                        <img src="" th:src="@{'/images/contact.png'}" style='height: 200px; width:200px;border-radius: 50%; '>
+                    </div>
+
+
+                    <h1 class="text-center mt-3 text-primary font-italic font-weight-bold">
+                        Start Adding new Contacts on cloud...
+                    </h1>
+
+                    <a th:href="@{/user/contact}" class="btn btn-warning btn-block mt-3">
+                        Add Contacts
+                    </a>
+
+                    <h3 class="my-4">Donate Us</h3>
+                   
+                        <input type="number" class="form-control my-2" id="amount" name='' placeholder="Enter Amount">
+                        <div class="container text-center mt-4">
+                            <button class="btn btn-success btn-block  p-3" onclick="paymentorder()">Pay Now!!!</button>
+                        </div>
+                    
+
+
+                </div>
+            </div>
+
+        </section>
+
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section>
+           <div th:if="${session.message}" class="alert" th:classappend="${session.message.type}" role="alert">
+                                <span th:text="${session.message.content}"> </span><a th:href="@{/removeMessage3}"><i class="fa fa-times" aria-hidden="true" style="color: black"></i></a>
+              </div>
+            <div class="container login-container d-flex align-items-center justify-content-center">
+            <div class="row ">
+                <div class="login-form-1">
+                    <h3>Login Form...</h3>
+                    
+                    <form method="post" action="#" th:action='@{/signin}'>
+                        
+                        <div th:if='${param.error}' class="alert alert-danger">Invalid password and Username</div>
+                        <div th:if='${param.logout}' class="alert alert-success">You have been logged out!!!</div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Email *" value="" name='username'/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" value="" name='password'/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                    </form>    
+                        <div class="form-group">
+                            <a href="/get" class="btnForgetPwd">Forget Password?</a>
+                        </div>
+                    
+                    <div class="form-group">
+                        <a href="/signup" class="btnForgetPwd" >Don't Have a account!!!</a>
+                        </div>
+                    
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

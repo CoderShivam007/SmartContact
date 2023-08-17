@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="user_base::Layout(~{::section})">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <section class="content mt-5">
+            <h1>this is my profile page</h1>
+            <div class='card mr-3 ml-3' >
+                <div class='card-body'>
+                    <div class='container text-center' >
+
+                        <img src="" th:src="@{'/images/'+${user.image}}" style='height: 200px; width:200px;border-radius: 50%; '>
+                        <h1 class=""> <span th:text='${user.name }'> </span>  </h1>
+
+                        <div id="pdetail">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">User ID :</th>
+                                        <td th:text=" 'US0' +${user.id}"> </td>
+                                    </tr>
+                                    
+                                    
+                                    <tr>
+                                        <th scope="row">Email :</th>
+                                        <td th:text="${user.email}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Role :</th>
+                                        <td th:text="${user.role}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"> No. of Contact Listed :</th>
+                                        <td th:text="${total}"> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">About Me :</th>
+                                        <td th:text="${user.about}">  </td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+           
+        </section>
+    </body>
+</html>
